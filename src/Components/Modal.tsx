@@ -54,6 +54,14 @@ export class ModalComponent extends React.PureComponent<IModalProps, IModalState
 		}
 	}
 
+	public componentDidUpdate(prevProps) {
+		if (this.props.reinitializeFromSelected) {
+			if (prevProps.selected != this.props.selected) {
+				this.setState({ selectedObject: this.props.selected })
+			}
+		}
+	}
+
 	private _openModal(): void {
 		const { items, autoGenerateAlphabeticalIndex, disabled, sortingLanguage } = this.props;
 		if (autoGenerateAlphabeticalIndex) {
@@ -95,7 +103,7 @@ export class ModalComponent extends React.PureComponent<IModalProps, IModalState
 					<SafeAreaView style={ModalStyles.container}>
 						{
 							renderSearch ? renderSearch(
-									this.onClose.bind(this), 
+									this.onClose.bind(this),
 									this.onBackRequest.bind(this)
 								) : (
 								<SearchComponent
