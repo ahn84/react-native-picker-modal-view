@@ -22,6 +22,7 @@ export interface IModalProps {
     FlatListProps?: FlatListProps<any>;
     selectPlaceholderText: string;
     selected?: IModalListInDto;
+    reinitializeFromSelected?: boolean;
     searchPlaceholderText: string;
     SearchInputProps?: TextInputProps;
     ModalProps?: ModalProps;

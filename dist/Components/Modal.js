@@ -43,6 +43,13 @@ export class ModalComponent extends React.PureComponent {
             });
         }
     }
+    componentDidUpdate(prevProps) {
+        if (this.props.reinitializeFromSelected) {
+            if (prevProps.selected != this.props.selected) {
+                this.setState({ selectedObject: this.props.selected });
+            }
+        }
+    }
     _openModal() {
         const { items, autoGenerateAlphabeticalIndex, disabled, sortingLanguage } = this.props;
         if (autoGenerateAlphabeticalIndex) {
