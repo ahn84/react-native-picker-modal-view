@@ -13,7 +13,7 @@ export class ModalComponent extends React.PureComponent {
             searchText: '',
             stickyBottomButton: false,
             selectedAlpha: null,
-            selectedObject: {},
+            selectedObject: this.props.selected || {},
         };
         this._onViewableItemsChanged = this._onViewableItemsChanged.bind(this);
         this.viewabilityConfig = {
