@@ -16,7 +16,7 @@ export class ModalComponent extends React.PureComponent<IModalProps, IModalState
 		searchText: '',
 		stickyBottomButton: false,
 		selectedAlpha: null,
-		selectedObject: {} as IModalListInDto,
+		selectedObject: this.props.selected || {} as IModalListInDto,
 	};
 
 	public static defaultProps = { showToTopButton: true, modalAnimationType: 'slide', showAlphabeticalIndex: false, searchInputTextColor: '#252525', autoGenerateAlphabeticalIndex: false, sortingLanguage: 'tr', removeClippedSubviews: false, selectPlaceholderText: 'Choose one...', searchPlaceholderText: 'Search...', autoSort: false, items: [], disabled: false, requireSelection: false, };
@@ -103,20 +103,20 @@ export class ModalComponent extends React.PureComponent<IModalProps, IModalState
 					<SafeAreaView style={ModalStyles.container}>
 						{
 							renderSearch ? renderSearch(
-									this.onClose.bind(this),
-									this.onBackRequest.bind(this)
-								) : (
-								<SearchComponent
-									searchText={searchPlaceholderText}
-									placeholderTextColor={searchInputTextColor}
-									onClose={this.onClose.bind(this)}
-									onBackRequest={this.onBackRequest.bind(this)}
-									forceSelect={requireSelection}
-									setText={(text: string) => this.setText(text)}
-									backButtonDisabled={backButtonDisabled}
-									{...SearchInputProps}
-								/>
-							)
+								this.onClose.bind(this),
+								this.onBackRequest.bind(this)
+							) : (
+									<SearchComponent
+										searchText={searchPlaceholderText}
+										placeholderTextColor={searchInputTextColor}
+										onClose={this.onClose.bind(this)}
+										onBackRequest={this.onBackRequest.bind(this)}
+										forceSelect={requireSelection}
+										setText={(text: string) => this.setText(text)}
+										backButtonDisabled={backButtonDisabled}
+										{...SearchInputProps}
+									/>
+								)
 						}
 						<KeyboardAvoidingView style={ModalStyles.keyboardContainer}
 							behavior={Platform.OS === 'ios' ? 'padding' : null}
